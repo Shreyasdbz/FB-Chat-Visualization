@@ -1,20 +1,48 @@
 import React, { Component } from 'react'
-import { FilePond } from 'react-filepond';
-import 'filepond/dist/filepond.min.css';
 
 class SetDirectory extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            textStuff: "",
+            fileArr: []
+        }
+    }
+
+    loadTextasFile = () => {
+        var filesToLoad = document.getElementById("filesToLoad").files
+        for (let i = 0; i < filesToLoad.length; i++) {
+            const f = filesToLoad[i];
+
+            var fileReader = new FileReader();
+            fileReader.onload = (fileLoadedEvent) => {
+                var textFromFile = fileLoadedEvent.target.result;
+                this.setState(prevState => ({
+                    arrayvar: [...prevState.fileArr, textFromFile]
+                }))
+
+            }
+            fileReader.readAsText(f, "UTF-8");
+        }
+    }
+
     render(){
         return(
             <div className="container">
-                <button className="btn blue darken-5 z-depth-0">Set Directory</button>
+                <br/>
+                <br/>
+                {/* <input directory="" webkitdirectory="" type="file" accept="json" onChange={this.onChangeHandler}/> */}
+                <input id="fileToLoad" name="file" type="file" accept="json" onChange={this.loadTextasFile}/>
+                <br/>
+                <br/>
+                <button className="btn blue darken-5 z-depth-0" onClick={this.onClickHandler}>Submit</button>
                 <br/>
                 <br/>
                 <br/>
-                {/* <form className="uploader" encType="multipart/form-data" >
-                    <input type="file" id="file" accept=".css" multiple />
-                </form> */}
-                <FilePond allowMultiple={true} name='LICENSE' required='true' acceptedFileTypes="css"></FilePond>
-            </div>
+                <br/>
+                <p>Filestuf: {this.state.textStuff}</p>
+                <br/>
+               </div>
         )
     }
 }
