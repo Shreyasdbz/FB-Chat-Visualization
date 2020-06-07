@@ -11,19 +11,29 @@ class SetDirectory extends Component{
 
     loadTextasFile = () => {
         var filesToLoad = document.getElementById("filesToLoad").files
+        var tempFileData = []
+
         for (let i = 0; i < filesToLoad.length; i++) {
             const f = filesToLoad[i];
 
-            var fileReader = new FileReader();
-            fileReader.onload = (fileLoadedEvent) => {
-                var textFromFile = fileLoadedEvent.target.result;
-                this.setState(prevState => ({
-                    arrayvar: [...prevState.fileArr, textFromFile]
-                }))
+            if(f.name.includes(".json")){
+                var fileReader = new FileReader();
 
+                fileReader.onload = (fileLoadedEvent) => {
+                    var textFromFile = fileLoadedEvent.target.result;
+                    tempFileData.push(textFromFile)
+                }
+                fileReader.readAsText(f, "UTF-8"); 
             }
-            fileReader.readAsText(f, "UTF-8");
         }
+   
+        this.setState({
+            fileArr: [...this.state.fileArr, tempFileData]
+        })
+    }
+
+    onClickHandler = () =>{
+        console.log(this.state.fileArr)
     }
 
     render(){
@@ -31,16 +41,15 @@ class SetDirectory extends Component{
             <div className="container">
                 <br/>
                 <br/>
-                {/* <input directory="" webkitdirectory="" type="file" accept="json" onChange={this.onChangeHandler}/> */}
-                <input id="fileToLoad" name="file" type="file" accept="json" onChange={this.loadTextasFile}/>
+                <input id="filesToLoad" name="file" directory="" webkitdirectory="" type="file" accept="json" onChange={this.loadTextasFile}/>
                 <br/>
                 <br/>
                 <button className="btn blue darken-5 z-depth-0" onClick={this.onClickHandler}>Submit</button>
                 <br/>
                 <br/>
                 <br/>
+                <p>Imported Files: {this.state.fileArr}</p>
                 <br/>
-                <p>Filestuf: {this.state.textStuff}</p>
                 <br/>
                </div>
         )
