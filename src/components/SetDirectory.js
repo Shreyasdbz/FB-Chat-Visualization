@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import ParseFile from '../components/stats/ParseFile'
 
 class SetDirectory extends Component{
     constructor(props){
         super(props);
         this.state = {
             textStuff: "",
-            fileArr: []
+            fileArr: [],
+            clist: []
         }
     }
 
@@ -22,7 +24,10 @@ class SetDirectory extends Component{
                 fileReader.onload = (fileLoadedEvent) => {
                     var textFromFile = fileLoadedEvent.target.result;
                     tempFileData.push(textFromFile)
+
+                    this.state.clist.push(new ParseFile(textFromFile))
                 }
+
                 fileReader.readAsText(f, "UTF-8"); 
             }
         }
@@ -33,7 +38,7 @@ class SetDirectory extends Component{
     }
 
     onClickHandler = () =>{
-        console.log(this.state.fileArr)
+        console.log(this.state.clist)
     }
 
     render(){
