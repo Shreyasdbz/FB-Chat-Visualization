@@ -1,5 +1,13 @@
+:root{
+  --primary-color: #1976D2;
+  --pimary-color-dark: #0d47a1;
+  --secondary-color: #D21976;
+  --tertiary-color: #76D219;
+}
+
 body {
   margin: 0;
+  font-family: 'Quicksand', sans-serif;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -11,5 +19,47 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 
-    /* font-family: 'Quicksand', sans-serif; */
+    font-family: 'Quicksand', sans-serif;
 }
+
+
+/* -------------------------------------------------------------------------------------------- */
+/*------------ Landing Page ------------*/
+/* -------------------------------------------------------------------------------------------- */
+
+.landing-main{
+  border-radius: 10px;
+}
+
+.inputfile-btn{
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.inputfile-btn + label {
+  font-size: 1.05em;
+  font-weight: 400;
+  color: white;
+  background-color: var(--primary-color);
+  display: inline-block;
+  padding: 15px;
+  
+  border-radius: 3px;
+}
+.inputfile-btn:focus + label,
+.inputfile-btn + label:hover {
+  background-color: var(--pimary-color-dark);
+}
+.inputfile-btn + label {
+	cursor: pointer; /* "hand" cursor */
+}
+.inputfile-btn:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+/* -------------------------------------------------------------------------------------------- */
+/*------------ Landing Page ------------*/
+/* -------------------------------------------------------------------------------------------- */

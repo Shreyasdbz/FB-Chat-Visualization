@@ -13,7 +13,7 @@ class Landing extends Component{
     render(){
         return(
             <div className="container center">
-                <div className="card landing-main blue lighten-5 z-depth-0">
+                <div className="card landing-main">
                     <br/>
                     <h5>Welcome to Facebook Chat Vizualizer</h5>
                     <br/>
@@ -21,7 +21,7 @@ class Landing extends Component{
                     <br/>
                     <SetDirectory></SetDirectory>
                     <br/>
-                    <p>Note: This is in no way shape of form associated with Facebook</p>
+                    <p>Note: This is in no way shape or form associated with Facebook</p>
                     <p>All Data is stored locally and deleted as soon as the tab/browser is closed</p>
                     <br/>
                     <br/>

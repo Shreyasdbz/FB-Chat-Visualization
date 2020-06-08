@@ -5,13 +5,11 @@ class ParseFile {
       this.messageList = []
     }
 
-    getTitle(jsonText) {
+    getTitle = (jsonText) => {
       var jfile = JSON.parse(jsonText)
 
       return jfile.title
-    }
-
-    
+    }    
 }
 
 export default ParseFile

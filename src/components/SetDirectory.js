@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+//Custom component import
 import ParseFile from '../components/stats/ParseFile'
+import Conversation from '../components/stats/Conversation'
 
 class SetDirectory extends Component{
     constructor(props){
@@ -7,6 +9,7 @@ class SetDirectory extends Component{
         this.state = {
             textStuff: "",
             fileArr: [],
+            flist: [],
             clist: []
         }
     }
@@ -14,6 +17,7 @@ class SetDirectory extends Component{
     loadTextasFile = () => {
         var filesToLoad = document.getElementById("filesToLoad").files
         var tempFileData = []
+        var readFiles = []
 
         for (let i = 0; i < filesToLoad.length; i++) {
             const f = filesToLoad[i];
@@ -25,9 +29,21 @@ class SetDirectory extends Component{
                     var textFromFile = fileLoadedEvent.target.result;
                     tempFileData.push(textFromFile)
 
-                    this.state.clist.push(new ParseFile(textFromFile))
-                }
+                    this.state.flist.push(new ParseFile(textFromFile))
 
+                    var convoTitle = JSON.parse(textFromFile).title
+                    if(readFiles.includes(convoTitle)){
+                        //pass
+                    }         
+                    else{
+                        readFiles.push(convoTitle)
+                        var pathKey = JSON.parse(textFromFile).thread_path
+                        this.state.clist.push(new Conversation(pathKey, convoTitle))
+                    }        
+
+
+                }
+                
                 fileReader.readAsText(f, "UTF-8"); 
             }
         }
@@ -46,10 +62,20 @@ class SetDirectory extends Component{
             <div className="container">
                 <br/>
                 <br/>
-                <input id="filesToLoad" name="file" directory="" webkitdirectory="" type="file" accept="json" onChange={this.loadTextasFile}/>
+                <input 
+                    className="inputfile-btn" 
+                    id="filesToLoad" 
+                    name="file" 
+                    directory="" 
+                    webkitdirectory="" 
+                    type="file" 
+                    accept="json" 
+                    onChange={this.loadTextasFile}
+                    />
+                <label htmlFor="filesToLoad">Select Directory</label> 
                 <br/>
                 <br/>
-                <button className="btn blue darken-5 z-depth-0" onClick={this.onClickHandler}>Submit</button>
+                <button className="btn blue darken-2 z-depth-0" onClick={this.onClickHandler}>Submit</button>
                 <br/>
                 <br/>
                 <br/>
