@@ -1,16 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { createStore } from "redux";
 import { Provider } from "react-redux";
 // import { connect } from 'react-redux'
 //Visual Components
 import Navbar from "./components/layout/Navbar";
-import Dashboard from "./components/Dashboard";
-import Landing from "./components/Landing";
+import Dashboard from "./components/layout/Dashboard";
+import Landing from "./components/layout/Landing";
 //Store components
-import rootReducer from "./store/rootReducer";
-
-const store = createStore(rootReducer);
+import store from "./components/redux/store/store";
 
 const App = () => {
   return (

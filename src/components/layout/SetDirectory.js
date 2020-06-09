@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import store from '../redux/store/store'
 // //Custom component import
-// import ParseFile from "../components/stats/ParseFile";
-// import Conversation from "../components/stats/Conversation";
+import Conversation from '../analytics/Conversation'
+//Redux imports
+import { addConversation } from '../redux/actions/rootActions'
 
 const SetDirectory = () => {
-  const [fbData, setFBData] = useState();
-  const [conversation, setCoversation] = useState([]);
 
   const loadTextAsFile = () => {
     var filesToLoad = document.getElementById("filesToLoad").files;
@@ -17,16 +17,20 @@ const SetDirectory = () => {
         var fileReader = new FileReader();
         
         fileReader.onload = (fileLoadedEvent) => {
-          var textFromFile = fileLoadedEvent.target.result;
-          var parseTextedFile = JSON.parse(textFromFile)
-          setCoversation(conversation.push(parseTextedFile.title))
+          var tFile = fileLoadedEvent.target.result;
+          var jFile = JSON.parse(tFile)
+          
+          var payload = {
+            conversationAdd: new Conversation(jFile.title, jFile.thread_path)
+          }
+          store.dispatch(addConversation(payload))
         };
         fileReader.readAsText(f, "UTF-8");
       }
 
     };
 
-    console.log(conversation)
+    console.log(store.getState())
   };
 
   const onClickHandler = () => {

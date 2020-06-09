@@ -1,5 +1,5 @@
 import React from "react";
-import SetDirectory from "../components/SetDirectory";
+import SetDirectory from "./SetDirectory";
 
 const Landing = () => {
   return (
