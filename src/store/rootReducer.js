@@ -3,7 +3,7 @@ const fileStore = (state = [], action) => {
         case 'ADD_FILE':
             return[
                 ...state,{
-                    id: action.id               
+                    id: action.id                
                 }
             ]
         default:
