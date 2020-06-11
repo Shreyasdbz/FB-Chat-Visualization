@@ -1,8 +1,9 @@
 import { ADD_CONVERSATION } from "../actions/actionTypes";
+import { ADD_JSON_FILE } from '../actions/actionTypes'
 
 const initialState = {
   conversations: [],
-  fileList: []
+  jsonFiles: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -12,6 +13,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         ...state.conversations.push(action.payload.conversationAdd)
       };
+    case ADD_JSON_FILE:
+        return{
+            ...state,
+            ...state.jsonFiles.push(action.payload.jsonFileAdd)
+        }
     default:
       return state;
   }
