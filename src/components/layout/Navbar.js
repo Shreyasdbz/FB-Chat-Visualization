@@ -8,11 +8,11 @@ class Navbar extends Component{
             <div className="navbar-fixed">
                 <nav className="nav-wrapper blue darken-2">
                     <div className="container">
-                        <Link to="/" className="brand-logo">Facebook Messenger Graphs</Link>
+                        <Link to="/" className="brand-logo">FB Messenger Analytics</Link>
                         <ul className="right">
-                            <li><NavLink to="/Dashboard">Dashboard</NavLink></li>
-                            <li><NavLink to="/About">About</NavLink></li>
-                            <li><NavLink to="/Exit">Exit</NavLink></li>
+                            <li><NavLink to="/Dashboard" className="navbar-link">Dashboard</NavLink></li>
+                            <li><NavLink to="/About" className="navbar-link">About</NavLink></li>
+                            <li><NavLink to="/Exit" className="navbar-link">Exit</NavLink></li>
                         </ul>
                     </div>
                 </nav>
