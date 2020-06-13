@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import store from '../redux/store/store'
 
 const Dashboard = () => {
@@ -16,7 +17,9 @@ const Dashboard = () => {
                             </div>
                             <div className="col s4">
                                 <div className="col-content right">
-                                    <button>Open</button>
+                                <Link to={"/ConversationFunctions/" + convo.thread_path}>
+                                    <button>Click</button>
+                                </Link>
                                 </div>
                             </div>
                         </div>

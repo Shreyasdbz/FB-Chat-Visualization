@@ -1,20 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 import store from '../redux/store/store'
 import { addJsonFile } from '../redux/actions/rootActions'
 import { addConversation } from '../redux/actions/rootActions'
 // import { updateConversation } from '../redux/actions/rootActions'
 import Conversation from '../analytics/Conversation'
 import Participant from '../analytics/Participant'
-import { NavLink } from "react-router-dom";
 
 const Landing = () => {
 
   var store_conversations = []
+  var processing = false
+  var conversationsLoaded = 0
 
   // Import all the uploaded files into an array that contains all of them
   //  in a JSON object format array
   const loadJsonFiles = () => {
+    processing = true
     var filesToLoad = document.getElementById("filesToLoad").files;
 
     for(let i = 0; i < filesToLoad.length; i++) {
@@ -39,12 +42,15 @@ const Landing = () => {
         fileReader.readAsText(f, "UTF-8");
       }
     };
+    conversationsLoaded = store.getState().jsonFiles.length
+    processing = false
   };
 
 
   // Parse through all the imported files in the store's jsonFiles array
   //  Convert them into Conversation objects and build out the participant and message Lists
   const handleSubmit = () => {
+    processing = true
     
     //Precaution in case user clicks submit twice 
     var addedConvos = []
@@ -121,6 +127,7 @@ const Landing = () => {
     }
 
     console.log(store.getState())
+    processing = false
   };  
 
   
@@ -151,11 +158,19 @@ const Landing = () => {
           </div>
         </div>
 
+        {processing ? "Processing, please wait" : ""}
+        <div className="row">
+          <div className="row-content landing-filesLoaded">
+            <h6>
+              {conversationsLoaded} Conversations loaded!
+            </h6>
+          </div>
+        </div>
 
         <div className="row">
           <div className="row-content landing-submit">
           <NavLink to="/Dashboard">
-            <button className="btn blue darken-2 z-depth-0" onClick={handleSubmit}>Get Analytics</button>
+            <button className="btn blue darken-2 z-depth-0" onClick={handleSubmit}>Submit</button>
           </NavLink>
           </div>
         </div>

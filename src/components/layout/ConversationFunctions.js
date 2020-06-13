@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
+import store from '../redux/store/store'
 
 class ConversationFunctions extends Component {
     state = {
-        threadPath: null
+        threadPath: null,
+        conversation: "Loading"
     }
 
     componentDidMount(){
-        let id = this.props.match.params.thread_path
+        let path = this.props.location.pathname.replace("/ConversationFunctions/", "");
+
+        console.log(store.getState())
         this.setState({
-            threadPath: id
+            threadPath: path,
         })
     }
 
@@ -16,6 +20,7 @@ class ConversationFunctions extends Component {
         return(
             <div className="container">
                 <h4>{this.state.threadPath}</h4>
+                <h5>{this.state.conversation}</h5>
             </div>
         )
     }
