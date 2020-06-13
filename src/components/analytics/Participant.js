@@ -1,26 +1,20 @@
-// Participant class object to be used inside a Conversation object
-// The variables contained within are local to a specific conversation thread
-// @param -- messages: 
+import Message from './Message'
 
 class Participant {
-    constructor(name) {
+    constructor(name, message) {
       this.pName = name;
-      this.messages = this.getMessages;
-      this.reactions = this.getReactions;
+      this.messageList = this.initMessage(message)
     }
 
-    getMessages = (jsonText) => {
-        var mlist = {
-            mContent, mTimestamp
-        }
+    initMessage(message){
+        var msgList = []
+        msgList.push(new Message(message))
+        return msgList
+    }
 
-        return mlist
-    }    
-
-    getReactions = (jsonText) => {
-        var rlist = []
-
-        return rlist
+    addMessage(message){
+        console.log("Adding msg")
+        this.messageList.push(new Message(message))
     }
 }
 

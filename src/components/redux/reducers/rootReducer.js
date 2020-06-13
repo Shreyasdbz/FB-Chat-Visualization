@@ -22,14 +22,20 @@ function rootReducer(state = initialState, action) {
         ...state.conversations.push(action.payload)
       };
     case UPDATE_CONVERSATION:
-      for(let i=0; i<state.conversations.length; i++){
-        if(state.conversations[i].thread_path === action.payload.thread_path){
-          for(let j=0; j<action.payload.messages; j++){
-            state.conversations[i].jsonMessageList.push(action.payload.messages[j])
-          }
-        }
-      }
-      return state;
+      // return{
+      //   ...state, 
+      //   ...state.conversations.map(convo => {
+      //     if(convo.thread_path !== action.payload.thread_path){
+      //       return{
+      //         ...state
+      //       }
+      //     }
+      //     return{
+      //       ...state
+      //     }
+      //   })
+      // } 
+      return state
     case ADD_JSON_FILE:
         return{
             ...state,
