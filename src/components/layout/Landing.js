@@ -126,7 +126,6 @@ const Landing = () => {
       store.dispatch(addConversation(payload))
     }
 
-    console.log(store.getState())
     processing = false
   };  
 

@@ -4,23 +4,36 @@ import store from '../redux/store/store'
 class ConversationFunctions extends Component {
     state = {
         threadPath: null,
-        conversation: "Loading"
+        conversation: {
+            title: "Loading",
+            thread_path: null,
+            messageList: [],
+            participantList: [],
+            isGroup: false
+        }
     }
 
     componentDidMount(){
         let path = this.props.location.pathname.replace("/ConversationFunctions/", "");
+        var convo = null
+        for(let i=0; i<store.getState().conversations.length; i++){
+            if(store.getState().conversations[i].thread_path === path){
+                convo = store.getState().conversations[i]
+            }
+        }
 
-        console.log(store.getState())
         this.setState({
             threadPath: path,
+            conversation: convo
         })
     }
 
     render(){
+        console.log(this.state)
+
         return(
             <div className="container">
-                <h4>{this.state.threadPath}</h4>
-                <h5>{this.state.conversation}</h5>
+            {/* Need to pass props to each function via browser router */}
             </div>
         )
     }

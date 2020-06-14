@@ -18,7 +18,7 @@ const Dashboard = () => {
                             <div className="col s4">
                                 <div className="col-content right">
                                 <Link to={"/ConversationFunctions/" + convo.thread_path}>
-                                    <button>Click</button>
+                                    <button>Open</button>
                                 </Link>
                                 </div>
                             </div>
@@ -47,7 +47,9 @@ const Dashboard = () => {
                             </div>
                             <div className="col s4">
                                 <div className="col-content right">
-                                    <button>Open</button>
+                                    <Link to={"/ConversationFunctions/" + convo.thread_path}>
+                                        <button>Open</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

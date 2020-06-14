@@ -2,7 +2,7 @@ import Message from './Message'
 
 class Participant {
     constructor(name, message) {
-      this.pName = name;
+      this.sender_name = name;
       this.messageList = this.initMessage(message)
     }
 
@@ -13,7 +13,6 @@ class Participant {
     }
 
     addMessage(message){
-        console.log("Adding msg")
         this.messageList.push(new Message(message))
     }
 }
