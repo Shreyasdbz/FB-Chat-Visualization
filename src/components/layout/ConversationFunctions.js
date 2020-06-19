@@ -33,7 +33,50 @@ class ConversationFunctions extends Component {
 
         return(
             <div className="container">
-            {/* Need to pass props to each function via browser router */}
+                <div className="row">
+                    <div className="row-content">
+                        <p>Working with: </p>
+                        <h3>{this.state.conversation.title}</h3>
+                        <p>Select one of the available functions from below:</p>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="row-content">
+                        <ul>
+
+                            <li>
+                                <div className="card horizontal">
+                                    <div className="card-stacked">
+                                        <div className="card-content">
+                                            <h4>Messages by User</h4>
+                                            <p>Get a breakdown of the number of messages sent by each user </p>
+                                        </div>
+                                        <div className="card-action">
+                                            <button>Open</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div className="card horizontal">
+                                    <div className="card-stacked">
+                                        <div className="card-content">
+                                            <h4>Messages by User</h4>
+                                            <p>Get a breakdown of the number of messages sent by each user </p>
+                                        </div>
+                                        <div className="card-action">
+                                            <button>Open</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         )
     }
