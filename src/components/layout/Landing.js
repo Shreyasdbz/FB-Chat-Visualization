@@ -21,7 +21,7 @@ const Landing = () => {
     for(let i = 0; i < filesToLoad.length; i++) {
       const f = filesToLoad[i];
 
-      if (f.name.includes(".json")) {
+      if (f.name.includes(".json") && f.name.includes("message_")) {
         var fileReader = new FileReader();
         
         fileReader.onload = (fileLoadedEvent) => {

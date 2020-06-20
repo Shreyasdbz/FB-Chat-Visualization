@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import store from '../redux/store/store'
 
+import MessagesByUser from '../../components/analytics/functions/MessagesByUser'
+
 class ConversationFunctions extends Component {
-    state = {
-        threadPath: null,
-        conversation: {
-            title: "Loading",
-            thread_path: null,
-            messageList: [],
-            participantList: [],
-            isGroup: false
+    constructor(props){
+        super(props)
+        this.state = {
+            threadPath: null,
+            show: false,
+            conversation: {
+                title: "Loading",
+                thread_path: null,
+                messageList: [],
+                participantList: [],
+                isGroup: false
+            }
         }
     }
 
@@ -28,6 +34,12 @@ class ConversationFunctions extends Component {
         })
     }
 
+    showModal = () => {
+        this.setState({
+            show: !this.state.show
+        });
+    }
+
     render(){
         console.log(this.state)
 
@@ -43,39 +55,38 @@ class ConversationFunctions extends Component {
                 <div className="row">
                     <div className="row-content">
                         <ul>
-
                             <li>
                                 <div className="card horizontal">
                                     <div className="card-stacked">
                                         <div className="card-content">
                                             <h4>Messages by User</h4>
                                             <p>Get a breakdown of the number of messages sent by each user </p>
+                                            <MessagesByUser onClose={this.showModal} show={this.state.show}>
+                                                Message in Modal 
+                                            </MessagesByUser>
                                         </div>
                                         <div className="card-action">
-                                            <button>Open</button>
+                                            <button onClick={this.showModal} className="waves-effect waves-light btn">Open</button>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-
                             <li>
                                 <div className="card horizontal">
                                     <div className="card-stacked">
                                         <div className="card-content">
-                                            <h4>Messages by User</h4>
-                                            <p>Get a breakdown of the number of messages sent by each user </p>
+                                            <h4>Most Word Uses</h4>
+                                            <p>Search for a word and find out who uses it the most</p>
                                         </div>
                                         <div className="card-action">
-                                            <button>Open</button>
+                                            <button className="waves-effect waves-light btn">Open</button>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-
                         </ul>
                     </div>
                 </div>
-
             </div>
         )
     }

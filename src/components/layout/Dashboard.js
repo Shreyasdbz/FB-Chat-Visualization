@@ -43,30 +43,23 @@ const Dashboard = () => {
     var dmConvos = store.getState().conversations.map(convo => {
         if(convo.isGroup === false){
             return(
-                <div key={convo.thread_path} className="container">
-                    <div  className="row card vertical">
-                        <div className="dashboard-convoDiv">
-                            <div className="row-content">
-                                <div className="card-content">
-                                    <div className="col s9">
-                                        <div className="col-content left">
-                                            <p>
-                                                {convo.title}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="col s3">
-                                        <div className="col-content right">
-                                            <Link to={"/ConversationFunctions/" + convo.thread_path}>
-                                                <button className="waves-effect waves-light btn blue">Open</button>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
+                <div key={convo.thread_path} className="card">
+                    <div className="card-content">
+                        <div className="col s8">
+                            <div className="col-content">
+                                <p>{convo.title}</p>
+                            </div>
+                        </div>
+                        <div className="col s4">
+                            <div className="col-content">
+                                <Link to={"/ConversationFunctions/" + convo.thread_path}>
+                                    <button className="waves-effect waves-light btn blue">Open</button>
+                                </Link>
                             </div>
                         </div>
                     </div>
                 </div>
+
             )
         }
         else{
