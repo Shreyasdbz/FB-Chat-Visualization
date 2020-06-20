@@ -35,7 +35,6 @@ class ConversationFunctions extends Component {
             <div className="container">
                 <div className="row">
                     <div className="row-content">
-                        <p>Working with: </p>
                         <h3>{this.state.conversation.title}</h3>
                         <p>Select one of the available functions from below:</p>
                     </div>
