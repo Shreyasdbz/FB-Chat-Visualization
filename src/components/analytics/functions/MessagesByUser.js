@@ -23,8 +23,8 @@ export default class MessagesByUser extends Component {
                 <div className="functionModal-content">
                     {this.props.children}
                 </div>
-                <div className="functionModal-footer">
-                    <button onClick={e => {
+                <div className="actions">
+                    <button className="toggle-button" onClick={e => {
                         this.onClose(e);
                     }} className="btn blue">Close</button>
                 </div>

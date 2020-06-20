@@ -109,3 +109,31 @@ code {
   opacity: 1;
   visibility: visible;
 }
+.functionModal-frame.off{
+  opacity: 0;
+  visibility: hidden;
+  filter: blur(8px);
+  transform: scale(0.33);
+  box-shadow: 1rem 0 0 rgba(black, 0.2);
+}
+.functionModal-frame.h2{
+  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+  margin: 0;
+}
+.functionModal-frame.content{
+  padding: 1rem;
+}
+.functionModal-frame.actions{
+  border-top: 1px solid #ccc;
+  background: #eee;
+  padding: 0.5rem 1rem;
+}
+.functionModal-frame.actions.button{
+  border: 0;
+  background: #78f89f;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  line-height: 1;
+}

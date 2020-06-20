@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import store from '../redux/store/store'
 
+import FunctionWrapper from '../analytics/controller/FunctionWrapper'
 import MessagesByUser from '../../components/analytics/functions/MessagesByUser'
 
 class ConversationFunctions extends Component {
@@ -43,6 +44,16 @@ class ConversationFunctions extends Component {
     render(){
         console.log(this.state)
 
+        if(this.state.show){
+            return(
+                <FunctionWrapper>
+                    <MessagesByUser onClose={this.showModal} show={this.state.show}>
+                        Message in Modal 
+                    </MessagesByUser>
+                </FunctionWrapper>
+            )
+        }
+
         return(
             <div className="container">
                 <div className="row">
@@ -61,12 +72,9 @@ class ConversationFunctions extends Component {
                                         <div className="card-content">
                                             <h4>Messages by User</h4>
                                             <p>Get a breakdown of the number of messages sent by each user </p>
-                                            <MessagesByUser onClose={this.showModal} show={this.state.show}>
-                                                Message in Modal 
-                                            </MessagesByUser>
                                         </div>
                                         <div className="card-action">
-                                            <button onClick={this.showModal} className="waves-effect waves-light btn">Open</button>
+                                            <button onClick={this.showModal} className="waves-effect waves-light btn toggle-button">Open</button>
                                         </div>
                                     </div>
                                 </div>
