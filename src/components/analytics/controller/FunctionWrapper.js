@@ -4,7 +4,7 @@ class FunctionWrapper extends Component {
     constructor(props){
         super(props)
         this.state = {
-
+            value: 5
         }
     }
 

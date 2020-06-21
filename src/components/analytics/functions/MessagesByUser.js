@@ -6,29 +6,33 @@ export default class MessagesByUser extends Component {
     constructor(props){
         super(props)
         this.state = {
-            functionName: ''
+            conversation: {
+                title: "Loading",
+                thread_path: null,
+                messageList: [],
+                participantList: [],
+                isGroup: false
+            },
+            participants: []
         }
     }
 
-    onClose = (e) => {
-        this.props.onClose && this.props.onClose(e);
+    componentDidMount(){
+        var convo = this.props.conversation
+        var plist = []
+
+        this.setState({
+            conversation: convo,
+            participants: plist
+        })
     }
+
 
     render(){
-        if(!this.props.show){
-            return null
-        }
         return(
-            <div className="functionModal-frame">
-                <div className="functionModal-content">
-                    {this.props.children}
-                </div>
-                <div className="actions">
-                    <button className="toggle-button" onClick={e => {
-                        this.onClose(e);
-                    }} className="btn blue">Close</button>
-                </div>
-            </div>
+            <div className="container">
+                <span>DATA DATA DATA</span>
+           </div>
         )
     }
 }
