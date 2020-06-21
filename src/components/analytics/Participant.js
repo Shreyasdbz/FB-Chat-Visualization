@@ -8,13 +8,15 @@ class Participant {
       this.textMessages = 0;
       this.mediaMessages = 0;
       this.linksMessages = 0;
+      this.stickerMessages = 0;
       // activeTimes_hours list format: activity{time_hour_24, amount}
       // activeTimes_days list format: activity{time_day, amount}
       this.activeTimes_hours = [];
       this.activeTimes_days = [];
       // reactions list format: reaction{emoji, amount}
       this.reactions = [];
-      this.metions = 0;
+      this.metions = 0; 
+        // Amount of times the particpant has been mentioned
       this.avgMessageSize = 0;
     }
 

@@ -15,7 +15,7 @@ export const buildFileStore = (f) =>{
         var fileReader = new FileReader();
         
         fileReader.onload = (fileLoadedEvent) => {
-          console.log("File loaded")
+          console.log("Files loaded")
           var jFile = JSON.parse(fileLoadedEvent.target.result)
 
           //Precation in case uploading no conversation type files
@@ -79,6 +79,7 @@ export const buildConversationStore = () => {
     var participantList = []
     var participants = []
 
+    //Participant List Setup ------------------------------
     for(let m=0; m<messages.length; m++){
         if(participants.includes(messages[m].sender_name)){
             //Participant already added
@@ -95,59 +96,87 @@ export const buildConversationStore = () => {
         }
     }
 
-    //Do conversation analytics  ----------------------------------------------------------
+    //Do Participant analytics  ----------------------------------------------------------
     for(let p=0; p<participantList.length;p++){
         var totalMessages = 0;
         var textMessages = 0;
         var mediaMessages = 0;
         var linksMessages = 0;
-        // activeTimes_hours list format: activity{time_hour_24, amount}
-        // activeTimes_days list format: activity{time_day, time_day_num, amount}
+        var stickerMessages = 0;
         var activeTimes_hours = [];
         var activeTimes_days = [];
-        var addedTimes_hours = []
         var reactions = [];
         var addedReacts = []
-        var metions = 0;
+        var mentions = 0;
         var avgMessageSize = 0;
 
         //Time Data Setup
         var weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
         for(let d=0; d<weekDays.length; d++){
-            var activity = {
+            var activity_day = {
                 time_day: weekDays[d],
                 time_day_num: d,
                 amount: 0
             }
-            activeTimes_days.push(activity)
+            activeTimes_days.push(activity_day)
         }
         for(let i=0; i<=24; i++){
-            var activity = {
+            var activity_hour = {
                 time_hour: i,
                 amount: 0
             }
-            activeTimes_hours.push(activity)
+            activeTimes_hours.push(activity_hour)
         }
 
 
-        for(let m=0; m<participantList[p].messageList.length; p++){
-            var msg = participantList[p].messageList[m]
-            
-            //Add to activy time stuff
+        for(let m=0; m<participantList[p].messageList.length; m++){
+            var msg = participantList[p].messageList[m].jsonMsg
+         
+            // DATE Data ---------------------
             var date = new Date(msg.timestamp_ms)
             var active_hour = date.getHours()
             var active_day = date.getDay()
-            // TODO: ADD Time stuff using the pre created time data setup
-
-            //Add to total messages counter
-            totalMessages += 1;
-
-            //Add to text mesage counter
+            for(let t=0; t<activeTimes_days.length; t++){
+                if(activeTimes_days[t].time_day_num === active_day){
+                    activeTimes_days[t].amount += 1;
+                }
+            }
+            for(let t=0; t<activeTimes_hours.length; t++){
+                if(activeTimes_hours[t].time_hour === active_hour){
+                    activeTimes_hours[t].amount += 1;
+                }
+            }
+            // Text/Media/Links Data ---------------------
             if(msg.content){
                 textMessages += 1
+                // Mentions Data ---------------------
+                var fullName = participantList[p].sender_name
+                var firstName = "@" + fullName.split(" ")[0]
+                var contentArr = msg.content.split(" ")
+                if(contentArr.includes(firstName)){
+                    mentions +=1 
+                }
             }
-
-            //Add to reactions list
+            if(msg.share){
+                linksMessages += 1;
+            }
+            if(msg.type === "Share"){
+                if(!msg.share){
+                    //Game type links
+                    textMessages -= 1
+                    linksMessages += 1
+                }
+            }
+            if(msg.photos){
+                mediaMessages += msg.photos.length;
+            }
+            if(msg.videos){
+                mediaMessages += msg.videos.length;
+            }
+            if(msg.sticker){
+                stickerMessages += 1;
+            }
+            // Reactions Data ---------------------
             if(msg.reactions){
                 for(let r=0; r<msg.reactions.length; r++){
                     if(addedReacts.includes(msg.reactions[r].reaction)){
@@ -158,18 +187,30 @@ export const buildConversationStore = () => {
                         }
                     }
                     else{
-                        var reaction = {emoji: msg.reactions[r].reaction, amount: 0}
+                        var reaction = {emoji: msg.reactions[r].reaction, amount: 1}
                         reactions.push(reaction)
                         addedReacts.push(msg.reactions[r].reaction)
                     }
                 }
             }
-
-
         }
+        // TotalMessages Data ---------------------
+        totalMessages = textMessages + mediaMessages + linksMessages + stickerMessages;
+
+        // After data, update Participant object ---------------------
+        participantList[p].totalMessages = totalMessages;
+        participantList[p].textMessages = textMessages;
+        participantList[p].mediaMessages = mediaMessages;
+        participantList[p].linksMessages = linksMessages;
+        participantList[p].stickerMessages = stickerMessages;
+        participantList[p].activeTimes_days = activeTimes_days;
+        participantList[p].activeTimes_hours = activeTimes_hours;
+        participantList[p].reactions = reactions;
+        participantList[p].metions = mentions;
+        participantList[p].avgMessageSize = avgMessageSize;
     }
 
-    store_conversations[i].participantList = participantList
+        store_conversations[i].participantList = participantList
         if(participantList.length > 2){
             store_conversations[i].isGroup = true
         }  
@@ -180,4 +221,4 @@ export const buildConversationStore = () => {
         var payload = store_conversations[c]
         store.dispatch(addConversation(payload))
     }
-}
+}   

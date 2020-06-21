@@ -12,4 +12,4 @@ export const MENTIONS = "MENTIONS";
 export const REACTIONS = "REACTIONS";
 export const MESSAGE_SIZE_DATA = "MESSAGE_SIZE_DATA";
 export const WORD_FREQUENCY = "WORD_FREQUENCY";
-
+export const WORD_LENGTH_USES = "WORD_LENGTH_USES"
