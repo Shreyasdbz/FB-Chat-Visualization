@@ -70,17 +70,17 @@ class ConversationFunctions extends Component {
       <div className="container">
         <div className="row">
           <div className="row-content">
-            <p>Showing functions for: </p>
+            <p>Showing analytics functions for: </p>
             <h4>{this.state.conversation.title}</h4>
             <hr className="functions-titleDivider left" />
             <br />
             <h6>Select one of the available functions from below:</h6>
           </div>
         </div>
-
+        {/* General Conversation Statistics -------------------------------------------------------- */}
         <FunctionWrapper
-          title="General Conversation Statistics"
-          description="Get a breakdown of the number of messages sent by each user"
+          title="General Conversation Analytics"
+          description="A high level overview of various interesting statistics about a group or conversation"
         >
           <button
             className="btn blue function-link-btn"
@@ -91,9 +91,9 @@ class ConversationFunctions extends Component {
             Open
           </button>
         </FunctionWrapper>
-
+        {/* Messages_by_user Statistics -------------------------------------------------------- */}
         <FunctionWrapper
-          title="Messages By User"
+          title="Message Type By User"
           description="Get a breakdown of the number of messages sent by each user"
         >
           <button
@@ -103,10 +103,10 @@ class ConversationFunctions extends Component {
             Open
           </button>
         </FunctionWrapper>
-
+        {/* Messages graph over time Statistics -------------------------------------------------------- */}
         <FunctionWrapper
           title="Messages Over Time"
-          description="Get a breakdown of the number of messages sent by each user"
+          description="See how the messages in a group have grown over time"
         >
           <button
             className="btn blue function-link-btn"
@@ -117,14 +117,50 @@ class ConversationFunctions extends Component {
             Open
           </button>
         </FunctionWrapper>
-
+        {/* General Conversation Statistics -------------------------------------------------------- */}
         <FunctionWrapper
           title="Conversation Word Cloud"
-          description="Get a breakdown of the number of messages sent by each user"
+          description="Get a word cloud diagram of the most frequently used words in a conversation"
         >
           <button
             className="btn blue function-link-btn"
             onClick={() => this.showFunction(Functions.WORD_CLOUD)}
+          >
+            Open
+          </button>
+        </FunctionWrapper>
+        {/* General Conversation Statistics -------------------------------------------------------- */}
+        <FunctionWrapper
+          title="Serch word usage"
+          description="Search for a specific word to see its usage frequency by user"
+        >
+          <button
+            className="btn blue function-link-btn"
+            onClick={() => this.showFunction(Functions.WORD_FREQUENCY)}
+          >
+            Open
+          </button>
+        </FunctionWrapper>
+        {/* General Conversation Statistics -------------------------------------------------------- */}
+        <FunctionWrapper
+          title="Chat Active Times"
+          description="See what times each user and the chat overall is active the most"
+        >
+          <button
+            className="btn blue function-link-btn"
+            onClick={() => this.showFunction(Functions.TIME_CHAT_ACTIVE)}
+          >
+            Open
+          </button>
+        </FunctionWrapper>
+        {/* General Conversation Statistics -------------------------------------------------------- */}
+        <FunctionWrapper
+          title="Conversation Vocabulary"
+          description="Check the word length frequency relative to different users"
+        >
+          <button
+            className="btn blue function-link-btn"
+            onClick={() => this.showFunction(Functions.WORD_FREQUENCY)}
           >
             Open
           </button>

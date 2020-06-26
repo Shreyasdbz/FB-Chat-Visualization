@@ -15,7 +15,7 @@ class FunctionWrapper extends Component {
           <div className="card function-card">
             <div className="card-content">
               <div className="col s8">
-                <div class="col-content">
+                <div className="col-content">
                   <div className="row">
                     <div className="row-content">
                       <h5>{this.props.title}</h5>
@@ -29,7 +29,7 @@ class FunctionWrapper extends Component {
                 </div>
               </div>
               <div className="col s4">
-                <div class="col-content function-link right">
+                <div className="col-content function-link right">
                   {this.props.children}
                 </div>
               </div>

@@ -232,6 +232,21 @@ code {
 /*------------ Functions Modal ------------*/
 /* -------------------------------------------------------------------------------------------- */
 
+.functionWrapper-card {
+  margin-top: -15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding: 15px;
+  margin-bottom: 5px;
+  padding-right: 50px;
+}
+.functionWrapper-card:hover {
+  position: relative;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
 .functionModal-frame {
   width: 500px;
   background: white;
@@ -273,6 +288,7 @@ code {
 }
 
 .function-back-btn {
+  margin-top: 25px;
   background-color: var(--primary-color);
   overflow: hidden;
   z-index: -1;

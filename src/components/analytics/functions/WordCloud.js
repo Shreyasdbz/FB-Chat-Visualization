@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "zingchart/es6";
 import ZingChart from "zingchart-react";
+import "zingchart/es6";
 // EXPLICITLY IMPORT MODULE
 import "zingchart-react/dist/modules/zingchart-depth.min.js";
 
@@ -30,21 +30,16 @@ export default class WordCloud extends Component {
     var text = this.getData(wordList);
 
     var data = {
-      type: "wordcloud",
-      options: {
-        text: text,
-        minLength: 5,
-        maxItems: 50,
-        aspect: "flow-center"
-      }
+      type: "line",
+      series: [{ values: [1, 2, 4, 5, 6] }]
     };
 
     this.setState({
       conversation: convo,
       wordList: wordList,
       text: text,
-      pageLoading: false,
-      data: data
+      pageLoading: false
+      // data: data
     });
   }
 
@@ -68,6 +63,7 @@ export default class WordCloud extends Component {
     } else {
       return (
         <div className="container">
+          TEST
           <ZingChart data={this.state.data} />
           {console.log(this.state)}
         </div>
